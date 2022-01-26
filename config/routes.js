@@ -58,6 +58,14 @@ function returnAgsGasPricesPerState(objetc){
         arr[1]=avgList[i]
         arrayFinal.push(arr)
     }
-
+    
+    
     return arrayFinal
 }
+
+function toObject(arr) {
+    var rv = {};
+    for (var i = 0; i < arr.length; ++i)
+      rv[i] = arr[i];
+    return rv;
+  }
