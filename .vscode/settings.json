@@ -1,3 +1,14 @@
 {
-    "sqltools.connections": []
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "db-bigdata.postgres.uhserver.com",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "Conexão do trabalho de BD",
+            "database": "db_bigdata",
+            "username": "adminbigdata",
+            "password": "projetobigdata1"
+        }
+    ]
 }

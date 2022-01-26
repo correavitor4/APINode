@@ -21,9 +21,7 @@ app.use(routes)
 
 app.listen(21262,()=>{
     console.log('Express started at http://localhost:21262')
-    querys.returnStatesAndAvgPrices().then((result)=>{
-        console.log(result)
-    })
+    
 })
 
 
