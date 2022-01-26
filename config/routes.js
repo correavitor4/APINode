@@ -25,6 +25,14 @@ routes.get("/chart1",async (req,res)=>{
     res.end()
 })
 
+routes.get("/chart2",async(req,res)=>{
+    result = await querys.returnStatesAndPrices()
+    result = returnAvgsEtanolPricesPerStates(result)
+    res.statusCode = 200
+    res.send(JSON.stringify(result))
+    res.end()
+})
+
 function returnAgsGasPricesPerState(objetc){
     statesList = []
     avgList=[]
@@ -63,9 +71,42 @@ function returnAgsGasPricesPerState(objetc){
     return arrayFinal
 }
 
-function toObject(arr) {
-    var rv = {};
-    for (var i = 0; i < arr.length; ++i)
-      rv[i] = arr[i];
-    return rv;
-  }
+
+
+function returnAvgsEtanolPricesPerStates(objetc){
+    statesList = []
+    avgList=[]
+    arrayFinal =[]
+    for(var i=0;i<objetc.length;i++){
+        if(statesList.indexOf(objetc[i].uffk)<0){
+            statesList.push(objetc[i].uffk)
+        }
+    }
+    
+    for(i=0;i<statesList.length;i++){
+        valorTotalSomado = 0
+        numeroDeSomas =0
+        for(j=0;j<objetc.length;j++){
+            if(objetc[j].uffk==statesList[i] && objetc[j].tipo=='ETANOL'){
+                
+                valorTotalSomado+=parseInt(objetc[j].valor_venda,10) 
+                numeroDeSomas+=1
+            }
+            
+        }
+        avg=valorTotalSomado/numeroDeSomas
+        avgList.push(avg)
+        
+    }
+
+    for(i =0;i<statesList.length;i++){
+        statesList[i]='BR-'+statesList[i]
+        arr = [2]
+        arr[0]=statesList[i]
+        arr[1]=avgList[i]
+        arrayFinal.push(arr)
+    }
+    
+    
+    return arrayFinal
+}
