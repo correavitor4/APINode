@@ -10,5 +10,7 @@
             "username": "adminbigdata",
             "password": "projetobigdata1"
         }
-    ]
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/7eef6408-c698-4e55-b435-5000c0688434/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/APIDoTrabalhoDeBd1",
+    "appService.deploySubpath": "."
 }

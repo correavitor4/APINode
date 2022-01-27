@@ -25,9 +25,9 @@ async function connect(){
 }
 
 async function query(sql){
-    
     const conn =await connect()
     result= await conn.query(sql)
+    conn.end()
     return result.rows
 }
 

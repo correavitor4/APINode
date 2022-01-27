@@ -7,6 +7,7 @@ const db = require('./db/db')
 const querys = require('./db/querys')
 const { response } = require('express')
 const { type } = require('express/lib/response')
+const port = process.env.PORT || 3000
 
 
 const app = express()
@@ -19,8 +20,8 @@ app.use(routes)
 
 
 
-app.listen(21262,()=>{
-    console.log('Express started at http://localhost:21262')
+app.listen(port,()=>{
+    console.log(`Example app listening at http://localhost:${port}`)
     
 })
 
