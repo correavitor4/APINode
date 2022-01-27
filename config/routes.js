@@ -32,12 +32,10 @@ routes.get("/chart1",async (req,res)=>{
     if(result==null || result==[]){
         res.status =500
         res.send("Erro interno no servidor (falha ao buscar dados)")
-        res.end()
-        req.end()
     }
     res.statusCode =200
     res.send(result)
-    res.end()
+    
 })
 
 routes.get("/chart2",async(req,res)=>{
