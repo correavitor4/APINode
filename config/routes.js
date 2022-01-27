@@ -30,7 +30,7 @@ routes.get("/chart1",async (req,res)=>{
     result = await querys.returnStatesAndPrices()
     
     if(result==null || result==[]){
-        res.status =500
+        res.statusCode =500
         res.send("Erro interno no servidor (falha ao buscar dados)")
     }
     res.statusCode =200
