@@ -17,12 +17,15 @@ let db = [
 ]
 
 routes.get("/",(req,res)=>{
+    req.setTimeout(0)
     res.status=200
     res.send("Endpoint raíz")
     res.end()
+
 })
 
 routes.get("/chart1",async (req,res)=>{
+    req.setTimeout(0)
     //buscaDadosNoBanco
     result = await querys.returnStatesAndPrices()
     result = returnAgsGasPricesPerState(result)
@@ -33,6 +36,7 @@ routes.get("/chart1",async (req,res)=>{
 })
 
 routes.get("/chart2",async(req,res)=>{
+    req.setTimeout(0)
     result = await querys.returnStatesAndPrices()
     result = returnAvgsEtanolPricesPerStates(result)
     result.unshift(['Estado', 'Preço médio do etanol'])
@@ -42,6 +46,7 @@ routes.get("/chart2",async(req,res)=>{
 })
 
 routes.get("/chart3",async(req,res)=>{
+    req.setTimeout(0)
     result = await querys.returnStatesAndPrices()
     result = returnParticipationPerStates(result)
     result.unshift(['Estado', 'Número de registros'])
@@ -51,6 +56,7 @@ routes.get("/chart3",async(req,res)=>{
 })
 
 routes.get("/chart4",async(req,res)=>{
+    req.setTimeout(0)
     result = await querys.returnStatesAndPrices()
     result = returnLessExpensiveRegistry(result)
     result.unshift(['Estado', 'Menor preço registrado da gasolina'])
@@ -60,6 +66,7 @@ routes.get("/chart4",async(req,res)=>{
 })
 
 routes.get("/chart5",async(req,res)=>{
+    req.setTimeout(0)
     result = await querys.returnStatesAndPrices()
     result = returnMostExpensiveRegistry(result)
     result.unshift(['Estado', 'Maior preço registrado da gasolina'])
