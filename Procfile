@@ -1,1 +1,1 @@
-web: node src/appnodeparaapidotrabalhodebd.js
+web: node src/server.js
