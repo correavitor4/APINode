@@ -28,8 +28,13 @@ routes.get("/chart1",async (req,res)=>{
     req.setTimeout(0)
     //buscaDadosNoBanco
     result = await querys.returnStatesAndPrices()
-    result = returnAgsGasPricesPerState(result)
-    result.unshift(['Estado', 'Preço médio da gasolina'])
+    
+    if(result==null || result==[]){
+        res.status =500
+        res.send("Erro interno no servidor (falha ao buscar dados)")
+        res.end()
+        req.end()
+    }
     res.statusCode =200
     res.send(result)
     res.end()
@@ -181,44 +186,6 @@ function returnParticipationPerStates(objetc){
 }
 
 
-
-function returnAgsGasPricesPerState(objetc){
-    statesList = []
-    avgList=[]
-    arrayFinal =[]
-    for(var i=0;i<objetc.length;i++){
-        if(statesList.indexOf(objetc[i].uffk)<0){
-            statesList.push(objetc[i].uffk)
-        }
-    }
-    
-    for(i=0;i<statesList.length;i++){
-        valorTotalSomado = 0
-        numeroDeSomas =0
-        for(j=0;j<objetc.length;j++){
-            if(objetc[j].uffk==statesList[i] && objetc[j].tipo=='GASOLINA'){
-                
-                valorTotalSomado+=parseInt(objetc[j].valor_venda,10) 
-                numeroDeSomas+=1
-            }
-            
-        }
-        avg=valorTotalSomado/numeroDeSomas
-        avgList.push(avg)
-        
-    }
-
-    for(i =0;i<statesList.length;i++){
-        statesList[i]='BR-'+statesList[i]
-        arr = [2]
-        arr[0]=statesList[i]
-        arr[1]=avgList[i]
-        arrayFinal.push(arr)
-    }
-    
-    
-    return arrayFinal
-}
 
 
 
